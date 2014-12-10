@@ -59,6 +59,11 @@ class AssetPreloader {
       }
     };
 
+    if (this._images === null && this._audio === null) {
+      // no assets, resolve immediately
+      dfd.resolve(this.assets);
+    }
+
     _.each(this._images, (src, name) => {
       var img = new Image();
       img.onload = onAssetLoaded;

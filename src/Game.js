@@ -1,15 +1,15 @@
 /* @flow */
 
 var Coquette = require('coquette');
-var World = require('./World');
-var Kart = require('./Kart');
+var Person = require('./Person');
+var Player = require('./Player');
 
 type AssetMap = {
   images: {
-    [key: string]: Image
+    [key: string]: Image;
   };
   audio: {
-    [key:string]: ArrayBuffer
+    [key:string]: ArrayBuffer;
   };
 }
 
@@ -22,45 +22,15 @@ class Game {
   constructor(assets: AssetMap) {
     this.assets = assets;
 
-    this.width = 240;
-    this.height = 160;
+    this.width = 500;
+    this.height = 150;
 
-    this.c = window.__coquette__ = new Coquette(this, 'canvas', this.width, this.height, 'black');
-
+    this.c = window.__coquette__ = new Coquette(this, 'game-canvas', this.width, this.height, 'black');
     this.c.renderer.getCtx().imageSmoothingEnabled = false;
 
-    var mode7Config = {
-      horizon: 0,
-
-      spaceZ: 12,
-      scaleX: 200,
-      scaleY: 200,
-
-      objScaleX: 6,
-      objScaleY: 16,
-
-      fallbackColor: [104, 80, 8, 255],
-    };
-
-    window.config = mode7Config;
-
-    var kart = this.c.entities.create(Kart, {
-      mode7Config: mode7Config,
-      horizonOffset: 75,
-
-      position: {
-        x: 897,
-        y: 667,
-        angle: 270
-      },
-    });
-
-    this.world = this.c.entities.create(World, {
-      cameraOffset: -30,
-      mode7Config: mode7Config,
-      horizonOffset: 75
-    });
-
+    // TODO: Figure out how to typecheck entities.create's settings
+    this.c.entities.create(Person, { center: { x:250, y:40 }, color: '#099' });
+    this.c.entities.create(Player, { center: { x:256, y:110 }, color: '#f07' });
   }
 }
 
