@@ -1,5 +1,7 @@
 /* @flow */
 
+var Coquette = require('coquette');
+
 var Game = require('./Game');
 var AssetPreloader = require('./util/AssetPreloader');
 
@@ -10,7 +12,10 @@ function init() {
   });
 
   preloader.load().done(function(assets) {
-    new Game(assets);
+    // TODO: Use a promises library that doesn't break error handling in browser CJS
+    setTimeout(function() {
+      new Game(assets);
+    }, 0);
   });
 }
 

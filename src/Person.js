@@ -8,13 +8,18 @@ type Coordinates = {
   y: number;
 };
 
+type PersonOptions = {
+  center: Coordinates;
+  color: string;
+};
+
 class Person {
   c: Coquette;
   size: Coordinates;
   center: Coordinates;
   color: string;
 
-  constructor(game: Game, settings: any) {
+  constructor(game: Game, settings: PersonOptions) {
     this.c = game.c;
 
     this.size = { x:9, y:9 };
