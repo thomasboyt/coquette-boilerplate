@@ -1,7 +1,8 @@
 /* @flow */
 
 var Coquette = require('coquette');
-var Game = require('./Game');
+var Game = require('../Game');
+var BaseEntity = require('./BaseEntity');
 
 type Coordinates = {
   x: number;
@@ -13,7 +14,7 @@ type PersonOptions = {
   color: string;
 };
 
-class Person {
+class Person extends BaseEntity {
   c: Coquette;
   size: Coordinates;
   center: Coordinates;

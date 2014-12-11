@@ -1,11 +1,10 @@
 /* @flow */
 
 var Coquette = require('coquette');
-var Game = require('./Game');
 var Person = require('./Person');
 
 class Player extends Person {
-  update() {
+  update(dt: number) {
     if (this.c.inputter.isDown(this.c.inputter.UP_ARROW)) {
       this.center.y -= 0.4;
     }

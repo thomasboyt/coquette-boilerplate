@@ -1,8 +1,8 @@
 /* @flow */
 
 var Coquette = require('coquette');
-var Person = require('./Person');
-var Player = require('./Player');
+var Person = require('./entities/Person');
+var Player = require('./entities/Player');
 var addRegister = require('./util/addRegister');
 
 type AssetMap = {
