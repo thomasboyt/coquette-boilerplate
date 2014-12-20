@@ -2,7 +2,7 @@
 
 var Coquette = require('coquette');
 var Person = require('./Person');
-var BaseEntity = require('./BaseEntity');
+var Entity = require('./Entity');
 
 class Player extends Person {
   update(dt: number) {
@@ -11,7 +11,7 @@ class Player extends Person {
     }
   }
 
-  collision(other: BaseEntity) {
+  collision(other: Entity) {
     if (other instanceof Person) {
       other.center.y = this.center.y; // follow the player
     }

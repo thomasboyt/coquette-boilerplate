@@ -11,7 +11,7 @@ type Coordinates = {
   y: number;
 };
 
-class BaseEntity {
+class Entity {
   center: Coordinates;
   size: Coordinates;
   angle: number;
@@ -28,7 +28,7 @@ class BaseEntity {
   init(game: Game, settings: Object): void {}
   draw(ctx: any): void {}
   update(dt: number): void {}
-  collision(other: BaseEntity): void {}
+  collision(other: Entity): void {}
 
   constructor(game: Game, settings: Object): void {
     this.init(game, settings);
@@ -36,4 +36,4 @@ class BaseEntity {
   }
 }
 
-module.exports = BaseEntity;
+module.exports = Entity;
