@@ -31,11 +31,15 @@ class BaseEntity {
   /*
    * Public interface
    */
-
-  constructor(game: Game, settings: Object): void {}
+  init(game: Game, settings: Object): void {}
   draw(ctx: any): void {}
   update(dt: number): void {}
   collision(other: BaseEntity): void {}
+
+  constructor(game: Game, settings: Object): void {
+    this.init(game, settings);
+    game.c.entities.register(this);
+  }
 }
 
 module.exports = BaseEntity;

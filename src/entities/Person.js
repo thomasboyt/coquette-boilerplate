@@ -20,7 +20,7 @@ class Person extends BaseEntity {
   center: Coordinates;
   color: string;
 
-  constructor(game: Game, settings: PersonOptions) {
+  init(game: Game, settings: PersonOptions) {
     this.c = game.c;
 
     this.size = { x:9, y:9 };

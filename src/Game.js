@@ -35,13 +35,11 @@ class Game {
       center: { x:250, y:40 },
       color: '#099'
     });
-    this.c.entities.register(paramour);
 
     var player = new Player(this, {
       center: { x:256, y:110 },
       color: '#f07'
     });
-    this.c.entities.register(player);
   }
 }
 
