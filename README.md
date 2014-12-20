@@ -8,6 +8,10 @@ This boilerplate provides a base to build [Coquette](http://coquette.maryrosecoo
 
 It's based off of one of the [sample games](https://github.com/maryrosecook/coquette/tree/master/demos/simple)) in Coquette's GitHub repo. It also includes an asset preloader library that will load your game's images (as `Image` objects) and audio (as data arrays for use with the Web Audio API) before your game starts.
 
+### Get Started
+
+[Download the boilerplate](https://github.com/thomasboyt/coquette-boilerplate/archive/master.zip), unzip where you want to create your game, and begin hacking!
+
 ### Commands
 
 #### `npm run-script dev`
