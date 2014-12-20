@@ -12,12 +12,6 @@ type Coordinates = {
 };
 
 class BaseEntity {
-  /*
-   * Public fields
-   * TODO: These aren't being checked properly yet, see
-   * https://github.com/thomasboyt/coquette-boilerplate/issues/3
-   */
-
   center: Coordinates;
   size: Coordinates;
   angle: number;
