@@ -6,7 +6,7 @@ This boilerplate provides a base to build [Coquette](http://coquette.maryrosecoo
 * [Flow](http://flowtype.org/), a static type checker for JavaScript
 * [Grunt](http://gruntjs.com/) and [grunt-ssh](https://github.com/chuckmo/grunt-ssh) for deployment
 
-It's based off of one of the [sample games](https://github.com/maryrosecook/coquette/tree/master/demos/simple)) in Coquette's GitHub repo. It also includes an asset preloader library that will load your game's images (as `Image` objects) and audio (as data arrays for use with the Web Audio API) before your game starts.
+It's based off of one of the [sample games](https://github.com/maryrosecook/coquette/tree/master/demos/simple) in Coquette's GitHub repo. It also includes an asset preloader library that will load your game's images (as `Image` objects) and audio (as data arrays for use with the Web Audio API) before your game starts.
 
 ### Get Started
 
