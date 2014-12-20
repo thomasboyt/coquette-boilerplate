@@ -1,8 +1,10 @@
 {
   "name": "coquette-boilerplate",
   "version": "0.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "Boilerplate for coquette.js games",
+
+  "main": "src/main.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node_modules/.bin/webpack-dev-server",
@@ -10,8 +12,11 @@
     "flow-start": "flow start --lib interfaces/",
     "typecheck": "flow check --lib interfaces/"
   },
-  "author": "",
+
+  "author": "Thomas Boyt <me@thomasboyt.com>",
+
   "license": "MIT",
+
   "devDependencies": {
     "webpack": "~1.4.13",
     "file-loader": "~0.8.1",
@@ -26,6 +31,7 @@
     "grunt-contrib-copy": "~0.7.0",
     "jsx-loader": "~0.12.2"
   },
+
   "dependencies": {
     "coquette": "git://github.com/thomasboyt/coquette.git#commonjs",
     "q": "~1.1.0",

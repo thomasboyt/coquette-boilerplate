@@ -12,8 +12,9 @@ module.exports = {
   },
 
   resolve: {
-    // allow resolve modules that are in node_modules/ before looking into subdirectory
-    // prevent duplicate copies of modules
+    // always resolve modules that are in node_modules/ before looking into subdirectories
+    // this prevents duplicate bundled copies of modules in the case that a module exists in both
+    // `node_modules/foo` and `node_modules/bar/node_modules/foo`
     root: require('path').resolve('./node_modules')
   },
 
