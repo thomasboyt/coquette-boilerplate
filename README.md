@@ -22,14 +22,6 @@ Run a webpack dev server (defaults to `http://localhost:8080`) that will automat
 
 Deploy your game to a server through sftp. See the Gruntfile for more details.
 
-#### `npm run-script flow-start`
-
-Start a flow server in the background.
-
-#### `npm run-script typecheck`
-
-Run Flow typechecking once.
-
 ### Notes
 
 Uses a [custom fork of Coquette](https://github.com/thomasboyt/coquette/tree/commonjs) with CommonJS support.
