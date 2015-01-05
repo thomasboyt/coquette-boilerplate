@@ -1,6 +1,4 @@
-/* @flow */
-
-var Coquette = require('coquette');
+require('../assets/game.css');
 
 var Game = require('./Game');
 var AssetPreloader = require('./util/AssetPreloader');

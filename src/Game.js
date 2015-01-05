@@ -3,7 +3,9 @@
 var Coquette = require('coquette');
 var Person = require('./entities/Person');
 var Player = require('./entities/Player');
+
 var addRegister = require('./util/addRegister');
+var setupFullscreen = require('./util/fullscreen');
 
 type AssetMap = {
   images: {
@@ -23,11 +25,13 @@ class Game {
   constructor(assets: AssetMap) {
     this.assets = assets;
 
-    this.width = 500;
-    this.height = 150;
+    this.width = 640;
+    this.height = 480;
 
     this.c = window.__coquette__ = new Coquette(this, 'game-canvas', this.width, this.height, 'black');
     this.c.renderer.getCtx().imageSmoothingEnabled = false;
+
+    setupFullscreen();
     addRegister(this.c);
 
     // TODO: Figure out how to typecheck entities.create's settings

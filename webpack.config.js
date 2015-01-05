@@ -39,6 +39,11 @@ module.exports = {
         query: {
           name: '/assets/[hash].[ext]'
         }
+      },
+
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
   }
