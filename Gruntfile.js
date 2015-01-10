@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     },
 
     webpack: {
-      main: require('./webpack.prod.config')
+      main: require('./webpack.config'),
     },
 
     sftp: {
@@ -39,13 +39,23 @@ module.exports = function(grunt) {
     copy: {
       index: {
         src: 'index.html',
-        dest: 'build/'
+        dest: 'build/index.html'
+      }
+    },
+
+    zip: {
+      itch: {
+        cwd: 'build/',
+        src: ['build/**/*'],
+        dest: 'build/itch' + Date.now() + '.zip'
       }
     }
   });
 
-  grunt.registerTask('dist', ['clean:build', 'webpack:main', 'copy:index']);
+  grunt.registerTask('dist', ['clean:build', 'webpack', 'copy:index']);
 
-  grunt.registerTask('deploy', ['dist', 'sftp:game']);
   grunt.registerTask('deploy:all', ['dist', 'sftp']);
+  grunt.registerTask('deploy', ['dist', 'sftp:game']);
+
+  grunt.registerTask('itch', ['dist', 'zip']);
 };

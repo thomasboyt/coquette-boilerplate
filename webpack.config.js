@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     app: './src/main.js',
-    vendor: ['coquette', 'q', 'lodash']
+    vendor: ['coquette', 'q', 'lodash', 'javascript-state-machine', 'screenfull']
   },
 
   output: {
@@ -44,6 +44,22 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
+      },
+
+      {
+        test: /(?:\.woff$|\.ttf$|\.svg$|\.eot$)/,
+        loader: 'file-loader',
+        query: {
+          name: 'assets/[hash].[ext]'
+        }
+      },
+
+      {
+        test: /(?:\.wav$)/,
+        loader: 'file-loader',
+        query: {
+          name: 'assets/[hash].[ext]'
+        }
       }
     ]
   }
