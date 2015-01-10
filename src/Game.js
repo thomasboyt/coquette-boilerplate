@@ -1,11 +1,19 @@
 /* @flow */
 
 var Coquette = require('coquette');
+
+var StateMachine = require('javascript-state-machine');
+var addRegister = require('./lib/addRegister');
+var AudioManager = require('./lib/AudioManager');
+var AssetPreloader = require('./lib/AssetPreloader');
+var setupFullscreen = require('./lib/setupFullscreen');
+
+var assets = require('./assets');
+var config = require('./config');
+
+var UI = require('./entities/UI');
 var Person = require('./entities/Person');
 var Player = require('./entities/Player');
-
-var addRegister = require('./util/addRegister');
-var setupFullscreen = require('./util/fullscreen');
 
 type AssetMap = {
   images: {
@@ -22,8 +30,11 @@ class Game {
   width: number;
   height: number;
 
-  constructor(assets: AssetMap) {
+  constructor() {
+    this.audioManager = new AudioManager();
+
     this.assets = assets;
+    this.config = config;
 
     this.width = 640;
     this.height = 480;
@@ -31,19 +42,81 @@ class Game {
     this.c = window.__coquette__ = new Coquette(this, 'game-canvas', this.width, this.height, 'black');
     this.c.renderer.getCtx().imageSmoothingEnabled = false;
 
-    setupFullscreen();
+    setupFullscreen(this.c.inputter.F);
     addRegister(this.c);
 
-    // TODO: Figure out how to typecheck entities.create's settings
+    this.fsm = StateMachine.create({
+      initial: 'loading',
+      events: [
+        { name: 'loaded', from: ['loading'], to: 'attract' },
+        { name: 'start', from: ['attract', 'ended'], to: 'playing' },
+        { name: 'end', from: 'playing', to: 'ended' }
+      ]
+    });
+
+    this.preloader = new AssetPreloader(assets, this.audioManager.ctx);
+    this.ui = new UI(this, {});
+
+    this.preloader.load().done((assets) => {
+      this.loaded(assets);
+    });
+  }
+
+
+  // State changes
+
+  loaded(assets: AssetMap) {
+    this.fsm.loaded();
+
+    this.assets = assets;
+    this.audioManager.setAudioMap(assets.audio);
+  }
+
+  start() {
+    this.fsm.start();
+
     var paramour = new Person(this, {
-      center: { x:250, y:40 },
+      center: { x:320, y:200 },
       color: '#099'
     });
 
     var player = new Player(this, {
-      center: { x:256, y:110 },
+      center: { x:326, y:400 },
       color: '#f07'
     });
+  }
+
+  clearWorld() {
+    var entities = [Player, Person];
+
+    entities.forEach((type) => {
+      var items = this.c.entities.all(type);
+      items.forEach((item) => {
+        this.c.entities.destroy(item);
+      });
+    });
+  }
+
+  end() {
+    this.clearWorld();
+    this.fsm.end();
+  }
+
+
+  // Coquette hooks
+
+  update(dt: number) {
+    if (this.c.inputter.isPressed(this.c.inputter.M)) {
+      this.audioManager.toggleMute();
+    }
+
+    if (this.fsm.is('attract') || this.fsm.is('ended')) {
+      if (this.c.inputter.isPressed(this.c.inputter.SPACE)) {
+        setTimeout(() => {
+          this.start(this.fsm);
+        }, 0);
+      }
+    }
   }
 }
 

@@ -1,6 +1,9 @@
+/*
+ * Allows the page to be full-screened by pressing the keyCode specified
+ */
 var screenfull = require('screenfull');
 
-function setupFullscreen() {
+function setupFullscreen(keyCode) {
 
   document.addEventListener(screenfull.raw.fullscreenchange, function() {
     var canvas = document.querySelector('#game-canvas');
@@ -38,7 +41,7 @@ function setupFullscreen() {
   });
 
   window.addEventListener('keydown', function(e) {
-    if (e.keyCode === 70) {  // F
+    if (e.keyCode === keyCode) {
       screenfull.toggle();
     }
   });

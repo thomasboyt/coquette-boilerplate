@@ -15,14 +15,9 @@ type PersonOptions = {
 };
 
 class Person extends Entity {
-  c: Coquette;
-  size: Coordinates;
-  center: Coordinates;
   color: string;
 
   init(game: Game, settings: PersonOptions) {
-    this.c = game.c;
-
     this.size = { x:9, y:9 };
     this.center = settings.center;
     this.color = settings.color;

@@ -25,6 +25,7 @@ class AssetPreloader {
   assets: AssetMap;
   numTotal: number;
   numLoaded: number;
+  audioCtx: any;
 
   _images: ?{
     [key:string]: string
@@ -33,13 +34,15 @@ class AssetPreloader {
     [key:string]: string
   };
 
-  constructor (assetCfg : AssetCfg) {
+  constructor (assetCfg : AssetCfg, audioCtx: any) {
     /* jshint loopfunc: true */
 
     this.assets = {
       'images': {},
       'audio': {}
     };
+
+    this.audioCtx = audioCtx;
 
     this._images = assetCfg.images;
     this._audio = assetCfg.audio;
@@ -59,7 +62,7 @@ class AssetPreloader {
       }
     };
 
-    if (this._images === null && this._audio === null) {
+    if (this.numTotal === 0) {
       // no assets, resolve immediately
       dfd.resolve(this.assets);
     }
@@ -78,8 +81,10 @@ class AssetPreloader {
       xhr.responseType = 'arraybuffer';
 
       xhr.onload = () => {
-        this.assets.audio[name] = xhr.response;
-        onAssetLoaded();
+        this.audioCtx.decodeAudioData(xhr.response, (buf) => {
+          this.assets.audio[name] = buf;
+          onAssetLoaded();
+        });
       };
 
       xhr.send();

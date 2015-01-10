@@ -12,6 +12,7 @@ type Coordinates = {
 };
 
 class Entity {
+  game: Game;
   center: Coordinates;
   size: Coordinates;
   angle: number;
@@ -33,6 +34,7 @@ class Entity {
   constructor(game: Game, settings: Object): void {
     this.init(game, settings);
     game.c.entities.register(this);
+    this.game = game;
   }
 }
 

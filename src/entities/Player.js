@@ -6,8 +6,12 @@ var Entity = require('./Entity');
 
 class Player extends Person {
   update(dt: number) {
-    if (this.c.inputter.isDown(this.c.inputter.UP_ARROW)) {
-      this.center.y -= 0.4;
+    if ((this.center.y + this.size.y / 2) < 0) {
+      this.game.end();
+    }
+
+    if (this.game.c.inputter.isDown(this.game.c.inputter.UP_ARROW)) {
+      this.center.y -= this.game.config.playerSpeed * dt/100;
     }
   }
 

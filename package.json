@@ -29,6 +29,7 @@
     "coquette": "git://github.com/thomasboyt/coquette.git#commonjs",
     "q": "~1.1.0",
     "lodash": "~2.4.1",
-    "screenfull": "~1.2.1"
+    "screenfull": "~1.2.1",
+    "javascript-state-machine": "~2.3.2"
   }
 }
