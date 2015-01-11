@@ -32,9 +32,9 @@ class Entity {
   collision(other: Entity): void {}
 
   constructor(game: Game, settings: Object): void {
+    this.game = game;
     this.init(game, settings);
     game.c.entities.register(this);
-    this.game = game;
   }
 }
 
