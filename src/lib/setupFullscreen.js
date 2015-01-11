@@ -1,5 +1,8 @@
 /*
- * Allows the page to be full-screened (or un-full-screened) by pressing the keyCode specified
+ * Allows the page to be full-screened (or un-full-screened) by pressing the keyCode specified.
+ *
+ * The keypress is detected in a special listener, instead of in the Coquette update loop, because
+ * full screen mode can only be initiated from an event listener.
  */
 var screenfull = require('screenfull');
 
