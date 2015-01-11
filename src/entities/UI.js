@@ -1,13 +1,14 @@
-/* @flow */
+/*
+ * @flow
+ * Displays the current UI for any given game state.
+ */
 
-var Game = require('../Game');
 var Entity = require('./Entity');
 
 class UI extends Entity {
-  game: Game;
-
-  init(game: Game, settings: any) {
-    this.game = game;
+  init(settings: any) {
+    // By default, this Entity draws *over* anything else.
+    this.zindex = 1;
   }
 
   drawAttract(ctx: any) {

@@ -1,5 +1,5 @@
 /*
- * Allows the page to be full-screened by pressing the keyCode specified
+ * Allows the page to be full-screened (or un-full-screened) by pressing the keyCode specified
  */
 var screenfull = require('screenfull');
 

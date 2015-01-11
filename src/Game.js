@@ -1,4 +1,6 @@
-/* @flow */
+/*
+ * @flow
+ */
 
 var Coquette = require('coquette');
 
@@ -8,9 +10,10 @@ var AudioManager = require('./lib/AudioManager');
 var AssetPreloader = require('./lib/AssetPreloader');
 var setupFullscreen = require('./lib/setupFullscreen');
 
-var assets = require('./assets');
-var config = require('./config');
+var assets = require('./config/assets');
+var config = require('./config/game');
 
+var Entity = require('./entities/Entity');
 var UI = require('./entities/UI');
 var Person = require('./entities/Person');
 var Player = require('./entities/Player');
@@ -29,6 +32,7 @@ class Game {
   assets: AssetMap;
   width: number;
   height: number;
+  ui: UI;
 
   constructor() {
     this.audioManager = new AudioManager();
@@ -55,11 +59,18 @@ class Game {
     });
 
     this.preloader = new AssetPreloader(assets, this.audioManager.ctx);
-    this.ui = new UI(this, {});
+    this.ui = this.createEntity(UI, {});
 
     this.preloader.load().done((assets) => {
       this.loaded(assets);
     });
+  }
+
+  // TODO: debustify type checking on the argument here :I
+  createEntity(type, settings: Object): any {
+    var entity = new type(this, settings);
+    this.c.entities.register(entity);
+    return entity;
   }
 
 
@@ -75,12 +86,12 @@ class Game {
   start() {
     this.fsm.start();
 
-    var paramour = new Person(this, {
+    this.createEntity(Person, {
       center: { x:320, y:200 },
       color: '#099'
     });
 
-    var player = new Player(this, {
+    this.createEntity(Player, {
       center: { x:326, y:400 },
       color: '#f07'
     });

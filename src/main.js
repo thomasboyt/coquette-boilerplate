@@ -1,5 +1,6 @@
-// This file is purposely not type-checked!
-// Flow does not like Webpack's non-module requires
+/*
+ * This file is purposely not type-checked! Flow does not like non-JS imports.
+ */
 
 require('../assets/game.css');
 

@@ -1,4 +1,7 @@
-/* @flow */
+/*
+ * @flow
+ * Loads assets into the game. For usage, see `Game.js`.
+ */
 
 var q = require('q');
 var _ = require('lodash');

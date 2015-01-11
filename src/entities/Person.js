@@ -1,7 +1,6 @@
 /* @flow */
 
 var Coquette = require('coquette');
-var Game = require('../Game');
 var Entity = require('./Entity');
 
 type Coordinates = {
@@ -17,7 +16,7 @@ type PersonOptions = {
 class Person extends Entity {
   color: string;
 
-  init(game: Game, settings: PersonOptions) {
+  init(settings: PersonOptions) {
     this.size = { x:9, y:9 };
     this.center = settings.center;
     this.color = settings.color;

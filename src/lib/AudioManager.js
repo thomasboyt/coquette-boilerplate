@@ -1,5 +1,10 @@
-/* @flow
- * Provides
+/*
+ * @flow
+ * Provides a single location for playing audio assets loaded through `AudioManager`.
+ *
+ * Example usage:
+ *   // Will play the asset with the key of `explosion` in your assets configuration.
+ *   audioManager.play('explosion');
  */
 
 type AudioMap = {

@@ -5,9 +5,10 @@
  */
 
 var Coquette = require('coquette');
+var Entity = require('../entities/Entity');
 
 function addRegister(c: Coquette) {
-  c.entities.register = function(entity) {
+  c.entities.register = function(entity: Entity) {
     this.c.collider.createEntity(entity);
     this._entities.push(entity);
     return entity;
