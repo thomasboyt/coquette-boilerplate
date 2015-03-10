@@ -26,11 +26,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'jsx-loader',
-        query: {
-          stripTypes: true,
-          harmony: true
-        }
+        loader: 'babel-loader'
       },
 
       {

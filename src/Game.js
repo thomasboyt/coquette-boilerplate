@@ -5,10 +5,10 @@
 var Coquette = require('coquette');
 
 var StateMachine = require('javascript-state-machine');
-var addRegister = require('./lib/addRegister');
-var AudioManager = require('./lib/AudioManager');
-var AssetPreloader = require('./lib/AssetPreloader');
-var setupFullscreen = require('./lib/setupFullscreen');
+var addRegister = require('coquette-common/lib/addRegister');
+var AudioManager = require('coquette-common/lib/AudioManager');
+var AssetPreloader = require('coquette-common/lib/AssetPreloader');
+var setupFullscreen = require('coquette-common/lib/setupFullscreen');
 
 var assets = require('./config/assets');
 var config = require('./config/game');
